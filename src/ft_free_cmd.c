@@ -6,31 +6,19 @@
 /*   By: hsliu <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 13:33:59 by hsliu             #+#    #+#             */
-/*   Updated: 2022/12/26 14:20:13 by hsliu            ###   ########lyon.fr   */
+/*   Updated: 2022/12/27 14:34:29 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex.h"
 
-void	ft_free_rdwr(int argc, t_cmd *cmd)
-{
-	free(cmd[0].pathname);
-	free(cmd[0].arg[0]);
-	free(cmd[0].arg[1]);
-	free(cmd[0].arg);
-	free(cmd[argc - 2].pathname);
-	free(cmd[argc - 2].arg[0]);
-	free(cmd[argc - 2].arg[1]);
-	free(cmd[argc - 2].arg);
-}
-
-void	ft_free_arg(int argc, t_cmd *cmd)
+void	ft_free_arg(t_cmd *cmd, int n)
 {
 	int	i;
 	int	j;
 
-	i = 1;
-	while (i < argc - 2)
+	i = 0;
+	while (i < n)
 	{
 		j = 0;
 		while (cmd[i].arg[j])
@@ -39,41 +27,28 @@ void	ft_free_arg(int argc, t_cmd *cmd)
 			j++;
 		}
 		free(cmd[i].arg);
+		cmd[i].arg = NULL;
 		i++;
 	}
 }
 
-void	ft_free_pathname(int argc, t_cmd *cmd)
+void	ft_free_pathname(t_cmd *cmd, int n)
 {
 	int	i;
 
-	i = 1;
-	while (i < argc - 2)
+	i = 0;
+	while (i < n)
 	{
 		free(cmd[i].pathname);
+		cmd[i].pathname = NULL;
 		i++;
 	}
 }
 
-void	ft_free_pipe(int **pipefd, int argc)
+void	ft_free_cmd(t_cmd *cmd, int n)
 {
-	int	i;
-
-	if (pipefd == NULL)
-		return ;
-	i = 0;
-	while (i < argc - 2)
-	{
-		free(pipefd[i]);
-		i++;
-	}
-	free(pipefd);
-}
-
-void	ft_free_cmd(int argc, t_cmd *cmd, int **pipefd)
-{
-	ft_free_pipe(pipefd, argc);
-	ft_free_pathname(argc, cmd);
-	ft_free_arg(argc, cmd);
-	ft_free_rdwr(argc, cmd);
+	ft_free_pathname(cmd, n);
+	ft_free_arg(cmd, n);
+	free(cmd);
+	cmd = NULL;
 }

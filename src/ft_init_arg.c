@@ -5,37 +5,54 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/19 17:03:07 by hsliu             #+#    #+#             */
-/*   Updated: 2022/12/26 14:07:29 by hsliu            ###   ########lyon.fr   */
+/*   Created: 2022/12/27 12:22:30 by hsliu             #+#    #+#             */
+/*   Updated: 2022/12/27 14:24:22 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex.h"
 
-//ex : ./pipex infile "ls -l" "wc -l" outfile
-//argv[2] = "ls -l"
-//cmd[1] = {"ls", "-l", NULL}
-//
-//argv[1] = "infile"
-//cmd[0].argv = {"infile", NULL}
-int	ft_init_arg(t_cmd *cmd, int argc, char **argv)
+static void	ft_error_free(t_cmd *cmd, int i);
+
+//n is the number of cmd
+//there are argc - 3 command 
+//cmd[0] - cmd[ n - 1] are coomands
+//cmd[n] is null
+int	ft_init_arg(t_cmd *cmd, int n, char **argv)
 {
 	int	i;
+	int	j;
 
-	i = 1;
-	while (i < argc - 2)
+	i = 0;
+	j = 2;
+	while (i < n)
 	{
-		cmd[i].arg = ft_split(argv[i + 1], ' ');
+		cmd[i].arg = ft_split(argv[j], ' ');
 		if (cmd[i].arg == NULL)
 		{
-			while (i >= 1)
-			{
-				free(cmd[i].arg);
-				i--;
-			}
+			ft_error_free(cmd, i);
 			return (-1);
 		}
 		i++;
+		j++;
 	}
+	cmd[i].arg = NULL;
 	return (1);
+}
+
+static void	ft_error_free(t_cmd *cmd, int i)
+{
+	int	j;
+
+	while (i >= 0)
+	{
+		j = 0;
+		while (cmd[i].arg[j])
+		{
+			free(cmd[i].arg[j]);
+			j++;
+		}
+		free(cmd[i].arg);
+		i--;
+	}
 }

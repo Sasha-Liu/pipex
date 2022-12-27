@@ -6,7 +6,7 @@
 /*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 14:38:27 by hsliu             #+#    #+#             */
-/*   Updated: 2022/12/26 14:49:29 by hsliu            ###   ########lyon.fr   */
+/*   Updated: 2022/12/27 15:16:20 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,21 +26,17 @@
 typedef struct s_cmd{
 	char	*pathname;
 	char	**arg;
-	int		*read_pipe;
-	int		*write_pipe;
+	int		read;
+	int		write;
 }t_cmd;
 
-int		ft_init_pathname(t_cmd *cmd, int argc, char **envp);
-int		ft_init_arg(t_cmd *cmd, int argc, char **argv);
-int		ft_init_rdwr(int argc, char **argv, t_cmd *cmd);
-int		**ft_init_pipe(int argc, t_cmd *cmd);
-void	ft_free_pipe(int **pipefd, int argc);
-int		ft_init_cmd(int argc, char **argv, char **envp, t_cmd *cmd);
-void	ft_fork(int argc, t_cmd *cmd);
-void	ft_free_rdwr(int argc, t_cmd *cmd);
-void	ft_free_arg(int argc, t_cmd *cmd);
-void	ft_free_pathname(int argc, t_cmd *cmd);
-void	ft_free_pipe(int **pipefd, int argc);
-void	ft_free_cmd(int argc, t_cmd *cmd, int **pipefd);
+int	ft_init_arg(t_cmd *cmd, int n, char **argv);
+int	ft_init_pathname(t_cmd *cmd, int n, char **envp);
+int	ft_init_pipe(t_cmd *cmd, int n);
+t_cmd	*ft_init_cmd(int argc, char **argv, char **envp);
+void	ft_free_arg(t_cmd *cmd, int n);
+void	ft_free_pathname(t_cmd *cmd, int n);
+void	ft_free_cmd(t_cmd *cmd, int n);
+
 
 #endif

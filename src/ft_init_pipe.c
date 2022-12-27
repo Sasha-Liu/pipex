@@ -5,63 +5,79 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/19 21:46:07 by hsliu             #+#    #+#             */
-/*   Updated: 2022/12/26 14:20:35 by hsliu            ###   ########lyon.fr   */
+/*   Created: 2022/12/27 12:43:24 by hsliu             #+#    #+#             */
+/*   Updated: 2022/12/27 15:07:16 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex.h"
 
-static int	**ft_malloc_pipe(int argc);
-static void	ft_arrange_pipe(int **pipefd, int argc, t_cmd *cmd);
-static int	ft_open_pipe(int argc, int **pipefd);
+static int	ft_arrange_pipe(t_cmd *cmd, int **p, int n);
+static int	ft_open_pipe(int **p, int n);
+static int	**ft_malloc_pipe(int n);
+static void	**ft_free_pipe(int **p, int n);
 
-int	**ft_init_pipe(int argc, t_cmd *cmd)
+int	ft_init_pipe(t_cmd *cmd, int n)
 {
-	int	**pipefd;
-	int	res;
+	int	**p;
 
-	pipefd = ft_malloc_pipe(argc);
-	res = ft_open_pipe(argc, pipefd);
-	if (res == -1)
-	{
-		ft_free_pipe(pipefd, argc);
-		return (NULL);
-	}
-	ft_arrange_pipe(pipefd, argc, cmd);
-	return (pipefd);
+	p = ft_malloc_pipe(n);
+	if (p == NULL)
+		return (-1);
+	if (ft_open_pipe(p, n) == -1)
+		return (ft_free_pipe(p, n), -1);
+	if (ft_arrange_pipe(cmd, p, n) == -1)
+		return (ft_free_pipe(p, n), -1);
+	ft_free_pipe(p, n);
+	return (1);
 }
 
-//we have (argc - 2) pipe
-//and (argc - 1) struct 
-//cmd[0].read_pipe will be define later
-//so is cmd[argc - 2].write_pipe
-static void	ft_arrange_pipe(int **pipefd, int argc, t_cmd *cmd)
+//n command
+//(n - 1) * 2 pipe array
+static int	ft_arrange_pipe(t_cmd *cmd, int **p, int n)
 {
 	int	i;
+	int	valid;
 
-	cmd[0].write_pipe = &(pipefd[0][1]);
+	valid = 1;
 	i = 1;
-	while (i <= argc - 3)
+	cmd[0].write = dup(p[0][1]);
+	close(p[0][1]);
+	while (i < n - 1)
 	{
-		cmd[i].read_pipe = &(pipefd[i - 1][0]);
-		cmd[i].write_pipe = &(pipefd[i][1]);
+		cmd[i].read = dup(p[i - 1][0]);
+		cmd[i].write = dup(p[i][1]);
+		close(p[i - 1][0]);
+		close(p[i][1]);
+		if (cmd[i].read == -1 || cmd[i].write == -1)
+			valid = -1;
 		i++;
 	}
-	cmd[argc - 2].read_pipe = &(pipefd[argc - 3][0]);
+	cmd[n - 1].read = dup(p[n - 2][0]);
+	close(p[n - 2][0]);
+	if (cmd[0].write == -1 || cmd[n - 1].read == -1)
+		valid = -1;
+	return (valid);
 }
 
-//if argc = 5, then we need argc - 2 = 3 pipe
-static int	ft_open_pipe(int argc, int **pipefd)
+//pipe array is (n - 1) * 2 
+static int	ft_open_pipe(int **p, int n)
 {
 	int	i;
 
 	i = 0;
-	while (i < argc - 2)
+	while (i < n - 1)
 	{
-		if (pipe(pipefd[i]) == -1)
+		if (pipe(p[i]) == -1)
 		{
 			perror("Pipe");
+			i--;
+			while (i >= 0)
+			{
+				close(p[i][0]);
+				close(p[i][1]);
+				i--;
+			}
 			return (-1);
 		}
 		i++;
@@ -69,28 +85,43 @@ static int	ft_open_pipe(int argc, int **pipefd)
 	return (1);
 }
 
-static int	**ft_malloc_pipe(int argc)
+//malloc a (n - 1) * 2 array
+static int	**ft_malloc_pipe(int n)
 {
-	int	**pipefd;
 	int	i;
+	int	**p;
 
-	pipefd = malloc(sizeof(int *) * (argc - 2));
-	if (pipefd == NULL)
+	p = malloc(sizeof(int *) * (n - 1));
+	if (p == NULL)
 		return (NULL);
 	i = 0;
-	while (i < argc - 2)
+	while (i < n - 1)
 	{
-		pipefd[i] = malloc(sizeof(int) * 2);
-		if (pipefd[i] == NULL)
+		p[i] = malloc(sizeof(int) * 2);
+		if (p[i] == NULL)
 		{
 			while (i >= 0)
 			{
-				free(pipefd[i]);
+				free(p[i]);
 				i--;
 			}
-			return (free(pipefd), NULL);
+			return (free(p), NULL);
 		}
 		i++;
 	}
-	return (pipefd);
+	return (p);
+}
+
+//free (n - 1) * 2 pipe array
+static void	**ft_free_pipe(int **p, int n)
+{
+	int	i;
+
+	i = 0;
+	while (i < n - 1)
+	{
+		free(p[i]);
+		i++;
+	}
+	free(p);
 }

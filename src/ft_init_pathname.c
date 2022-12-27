@@ -6,7 +6,7 @@
 /*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 14:33:42 by hsliu             #+#    #+#             */
-/*   Updated: 2022/12/26 14:35:45 by hsliu            ###   ########lyon.fr   */
+/*   Updated: 2022/12/27 15:11:43 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,10 @@ static char	**ft_add_slash(char **path);
 static void	ft_free_path(char **path);
 
 //it must be called after ft_init_arg
-//it initialize the pathname of cmd[1] to cmd[argc - 3]
-int	ft_init_pathname(t_cmd *cmd, int argc, char **envp)
+//n is the number of command
+//cmd[0] -  cmd[n - 1] 
+//cmd[n] = NULL
+int	ft_init_pathname(t_cmd *cmd, int n, char **envp)
 {
 	int		i;
 	char	**path;
@@ -28,13 +30,13 @@ int	ft_init_pathname(t_cmd *cmd, int argc, char **envp)
 	path = ft_add_slash(path);
 	if (path == NULL)
 		return (-1);
-	i = 1;
-	while (i <= argc - 3)
+	i = 0;
+	while (i < n)
 	{
 		cmd[i].pathname = ft_access(path, cmd[i].arg[0]);
 		if (cmd[i].pathname == NULL)
 		{
-			while (i >= 1)
+			while (i >= 0)
 			{
 				free(cmd[i].pathname);
 				i--;
@@ -43,6 +45,7 @@ int	ft_init_pathname(t_cmd *cmd, int argc, char **envp)
 		}
 		i++;
 	}
+	cmd[n].pathname = NULL;
 	ft_free_path(path);
 	return (1);
 }
