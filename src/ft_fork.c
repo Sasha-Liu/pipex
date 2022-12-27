@@ -6,7 +6,7 @@
 /*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 15:35:35 by hsliu             #+#    #+#             */
-/*   Updated: 2022/12/27 18:17:01 by hsliu            ###   ########.fr       */
+/*   Updated: 2022/12/27 19:55:18 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	ft_middle_fork(t_cmd *cmd, int argc)
 	pid_t	pid;
 	int		wstatus;
 	int		i;
-	
+
 	i = 1;
 	while (i < argc - 4)
 	{
@@ -48,7 +48,7 @@ void	ft_last_fork(t_cmd cmd, char *outfile)
 	int		fd;
 	pid_t	pid;
 	int		wstatus;
-	
+
 	fd = ft_open_outfile(outfile);
 	if (fd == -1)
 		return ;
@@ -86,7 +86,7 @@ void	ft_first_fork(t_cmd cmd, char *infile)
 {
 	int		fd;
 	pid_t	pid;
-	int 	wstatus;
+	int		wstatus;
 
 	fd = ft_open_infile(infile);
 	if (fd == -1)

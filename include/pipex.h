@@ -6,7 +6,7 @@
 /*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 14:38:27 by hsliu             #+#    #+#             */
-/*   Updated: 2022/12/27 17:14:22 by hsliu            ###   ########.fr       */
+/*   Updated: 2022/12/27 19:55:41 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ typedef struct s_cmd{
 	int		write;
 }t_cmd;
 
-int	ft_init_arg(t_cmd *cmd, int n, char **argv);
-int	ft_init_pathname(t_cmd *cmd, int n, char **envp);
-int	ft_init_pipe(t_cmd *cmd, int n);
+int		ft_init_arg(t_cmd *cmd, int n, char **argv);
+int		ft_init_pathname(t_cmd *cmd, int n, char **envp);
+int		ft_init_pipe(t_cmd *cmd, int n);
 t_cmd	*ft_init_cmd(int argc, char **argv, char **envp);
 void	ft_free_arg(t_cmd *cmd, int n);
 void	ft_free_pathname(t_cmd *cmd, int n);

@@ -6,13 +6,13 @@
 /*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 12:17:08 by hsliu             #+#    #+#             */
-/*   Updated: 2022/12/27 17:14:50 by hsliu            ###   ########.fr       */
+/*   Updated: 2022/12/27 19:54:08 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex.h"
 
-int main(int argc, char **argv, char **envp)
+int	main(int argc, char **argv, char **envp)
 {
 	t_cmd	*cmd;
 
@@ -27,5 +27,3 @@ int main(int argc, char **argv, char **envp)
 	ft_last_fork(cmd[argc - 4], argv[argc - 1]);
 	ft_free_cmd(cmd, argc - 3);
 }
-
-
