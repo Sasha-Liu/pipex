@@ -6,7 +6,7 @@
 /*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 15:35:35 by hsliu             #+#    #+#             */
-/*   Updated: 2022/12/27 17:08:25 by hsliu            ###   ########.fr       */
+/*   Updated: 2022/12/27 17:14:24 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static int	ft_open_outfile(char *outfile);
 static int	ft_open_infile(char *infile);
 
-void	ft_middle_fork(t_cmd *cmd, int argc, char **argv)
+void	ft_middle_fork(t_cmd *cmd, int argc)
 {
 	pid_t	pid;
 	int		wstatus;

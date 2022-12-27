@@ -6,7 +6,7 @@
 /*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 12:43:24 by hsliu             #+#    #+#             */
-/*   Updated: 2022/12/27 15:07:16 by hsliu            ###   ########.fr       */
+/*   Updated: 2022/12/27 17:16:29 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static int	ft_arrange_pipe(t_cmd *cmd, int **p, int n);
 static int	ft_open_pipe(int **p, int n);
 static int	**ft_malloc_pipe(int n);
-static void	**ft_free_pipe(int **p, int n);
+static void	ft_free_pipe(int **p, int n);
 
 int	ft_init_pipe(t_cmd *cmd, int n)
 {
@@ -113,7 +113,7 @@ static int	**ft_malloc_pipe(int n)
 }
 
 //free (n - 1) * 2 pipe array
-static void	**ft_free_pipe(int **p, int n)
+static void	ft_free_pipe(int **p, int n)
 {
 	int	i;
 
