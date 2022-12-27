@@ -6,7 +6,7 @@
 /*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 15:35:35 by hsliu             #+#    #+#             */
-/*   Updated: 2022/12/27 17:14:24 by hsliu            ###   ########.fr       */
+/*   Updated: 2022/12/27 18:17:01 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,10 @@ void	ft_first_fork(t_cmd cmd, char *infile)
 
 	fd = ft_open_infile(infile);
 	if (fd == -1)
+	{
+		close(cmd.write);
 		return ;
+	}
 	pid = fork();
 	if (pid == 0)
 	{
