@@ -6,7 +6,7 @@
 /*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 15:35:35 by hsliu             #+#    #+#             */
-/*   Updated: 2022/12/27 19:55:18 by hsliu            ###   ########.fr       */
+/*   Updated: 2022/12/27 20:38:22 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ void	ft_last_fork(t_cmd cmd, char *outfile)
 		close(fd);
 		wait(&wstatus);
 	}
+	return ;
 }
 
 static int	ft_open_outfile(char *outfile)

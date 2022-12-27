@@ -6,7 +6,7 @@
 #    By: hsliu <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/26 11:49:10 by hsliu             #+#    #+#              #
-#    Updated: 2022/12/27 17:13:28 by hsliu            ###   ########.fr        #
+#    Updated: 2022/12/27 20:11:52 by hsliu            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,6 +45,9 @@ all: $(NAME)
 
 $(NAME)	:	$(OBJ_DIR) $(OBJ) $(INC) $(LIB) 
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(LIB)
+
+valgrind	:	$(OBJ_DIR) $(OBJ) $(INC) $(LIB) 
+	$(CC) $(CFLAGS) -g -o $(NAME) $(OBJ) $(LIB)
 
 $(LIB): $(LIB_DIR)
 	$(MAKE) -C $(LIB_DIR)
