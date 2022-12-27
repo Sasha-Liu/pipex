@@ -6,7 +6,7 @@
 /*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 12:17:08 by hsliu             #+#    #+#             */
-/*   Updated: 2022/12/27 15:24:46 by hsliu            ###   ########.fr       */
+/*   Updated: 2022/12/27 17:05:51 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,10 @@ int main(int argc, char **argv, char **envp)
 		return (0);
 	}
 	cmd = ft_init_cmd(argc, argv, envp);
-	
-	int	i;
-	i = 0;
-	while (i < argc - 3)
-	{
-		ft_printf("cmd[ %d ] ", i);
-		ft_printf(" pathname: %s\n", cmd[i].pathname);
-		ft_printf("arg1: %s\targ2: %s\n", cmd[i].arg[0], cmd[i].arg[1]);
-		i++;
-	}
-
-
+	ft_first_fork(cmd[0], argv[1]);
+	ft_middle_fork(cmd, argc, argv);
+	ft_last_fork(cmd[argc - 4], argv[argc - 1]);
 	ft_free_cmd(cmd, argc - 3);
 }
+
+

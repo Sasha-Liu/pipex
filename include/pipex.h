@@ -6,7 +6,7 @@
 /*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 14:38:27 by hsliu             #+#    #+#             */
-/*   Updated: 2022/12/27 15:16:20 by hsliu            ###   ########.fr       */
+/*   Updated: 2022/12/27 17:06:05 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ t_cmd	*ft_init_cmd(int argc, char **argv, char **envp);
 void	ft_free_arg(t_cmd *cmd, int n);
 void	ft_free_pathname(t_cmd *cmd, int n);
 void	ft_free_cmd(t_cmd *cmd, int n);
-
+void	ft_middle_fork(t_cmd *cmd, int argc, char **argv);
+void	ft_last_fork(t_cmd cmd, char *outfile);
+void	ft_first_fork(t_cmd cmd, char *infile);
 
 #endif
