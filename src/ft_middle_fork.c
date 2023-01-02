@@ -6,7 +6,7 @@
 /*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 15:35:35 by hsliu             #+#    #+#             */
-/*   Updated: 2023/01/02 11:34:36 by hsliu            ###   ########lyon.fr   */
+/*   Updated: 2023/01/02 15:55:33 by hsliu            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,14 @@ static void	ft_middle_child(t_cmd *cmd, int i)
 	if (dup2(cmd[i].read, 0) == -1)
 	{
 		perror("dup2");
-		return ;
+		exit(EXIT_FAILURE);
 	}
 	if (dup2(cmd[i].write, 1) == -1)
 	{
 		perror("dup2");
-		return ;
+		exit(EXIT_FAILURE);
 	}
 	execve(cmd[i].pathname, cmd[i].arg, NULL);
 	perror("execve");
+	exit(EXIT_FAILURE);
 }
