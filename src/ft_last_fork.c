@@ -6,13 +6,12 @@
 /*   By: hsliu <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 10:58:28 by hsliu             #+#    #+#             */
-/*   Updated: 2023/01/02 15:56:35 by hsliu            ###   ########lyon.fr   */
+/*   Updated: 2023/01/02 15:57:21 by hsliu            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex.h"
 
-static int	ft_open_outfile(char *outfile);
 static void	ft_last_child(char *outfile, t_cmd cmd);
 
 void	ft_last_fork(t_cmd cmd, char *outfile)
