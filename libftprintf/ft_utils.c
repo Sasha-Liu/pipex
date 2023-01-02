@@ -6,13 +6,12 @@
 /*   By: hsliu <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 11:02:30 by hsliu             #+#    #+#             */
-/*   Updated: 2022/12/06 14:16:45 by hsliu            ###   ########lyon.fr   */
+/*   Updated: 2023/01/02 10:43:43 by hsliu            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "libft/libft.h"
-
 
 int	ft_putnbr(int n)
 {

@@ -6,7 +6,7 @@
 /*   By: hsliu <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 11:00:31 by hsliu             #+#    #+#             */
-/*   Updated: 2022/12/06 14:10:29 by hsliu            ###   ########lyon.fr   */
+/*   Updated: 2023/01/02 10:40:56 by hsliu            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	ft_print_unsigned(unsigned int n, char c, int *err)
 	char	*hex_low;
 	char	*hex_upp;
 	int		res;
-	
+
 	hex_low = "0123456789abcdef";
 	hex_upp = "0123456789ABCDEF";
 	if (c == 'u')

@@ -6,7 +6,7 @@
 /*   By: hsliu <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 15:14:22 by hsliu             #+#    #+#             */
-/*   Updated: 2022/12/06 14:46:29 by hsliu            ###   ########lyon.fr   */
+/*   Updated: 2023/01/02 10:43:22 by hsliu            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,23 +34,23 @@ int	ft_printf(const char *fmt, ...)
 	return (res);
 }
 
-int	ft_print(va_list ap, const char *fmt, int *count, int *err)
+int	ft_print(va_list ap, const char *fmt, int *cnt, int *err)
 {
 	while (*fmt)
 	{
 		if (*fmt != '%')
-			*count = *count + ft_putchar_err(*fmt, err);
+			*cnt += ft_putchar_err(*fmt, err);
 		else
 		{
 			fmt++;
 			if (*fmt == 'c' || *fmt == 'd' || *fmt == 'i')
-				*count = *count + ft_print_int(va_arg(ap, int), *fmt, err);
+				*cnt += ft_print_int(va_arg(ap, int), *fmt, err);
 			else if (*fmt == 's' || *fmt == 'p')
-				*count = *count + ft_print_ptr(va_arg(ap, void *), *fmt, err);
+				*cnt += ft_print_ptr(va_arg(ap, void *), *fmt, err);
 			else if (*fmt == 'u' || *fmt == 'x' || *fmt == 'X')
-				*count = *count + ft_print_unsigned(va_arg(ap, unsigned int), *fmt, err);
+				*cnt += ft_print_unsigned(va_arg(ap, unsigned int), *fmt, err);
 			else if (*fmt == '%')
-				*count = *count + ft_putchar_err(*fmt, err);
+				*cnt += ft_putchar_err(*fmt, err);
 			else
 				*err = -1;
 		}
@@ -58,7 +58,7 @@ int	ft_print(va_list ap, const char *fmt, int *count, int *err)
 			return (-1);
 		fmt++;
 	}
-	return (*count);
+	return (*cnt);
 }
 
 static int	ft_putchar_err(char c, int *err)

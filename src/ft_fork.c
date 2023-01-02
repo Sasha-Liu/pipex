@@ -6,7 +6,7 @@
 /*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 15:35:35 by hsliu             #+#    #+#             */
-/*   Updated: 2022/12/27 20:59:36 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/01/02 10:39:39 by hsliu            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ static int	ft_open_infile(char *infile)
 
 	if (access(infile, R_OK) != 0)
 	{
-		ft_printf("No such file or directory: %s\n", infile);
+		ft_printf("zsh: no such file or directory: %s\n", infile);
 		return (-1);
 	}
 	fd = open(infile, O_RDONLY);
