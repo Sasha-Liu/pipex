@@ -6,7 +6,7 @@
 /*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 14:38:27 by hsliu             #+#    #+#             */
-/*   Updated: 2023/01/04 13:36:52 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/01/04 15:30:31 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,7 @@ void	ft_child(t_cmd *cmd, int n, int i);
 void	ft_first_child(t_cmd *cmd);
 void	ft_middle_child(t_cmd *cmd, int i);
 void	ft_last_child(t_cmd *cmd, int n);
+
+void	ft_printf_err(char *s1, char *s2);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 13:25:22 by hsliu             #+#    #+#             */
-/*   Updated: 2023/01/04 14:44:23 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/01/04 15:32:21 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,7 @@ void	ft_first_child(t_cmd *cmd)
 		exit(EXIT_FAILURE);
 	}
 	execve(cmd[0].pathname, cmd[0].arg, NULL);
-	write(2, cmd[0].arg[0], ft_strlen(cmd[0].arg[0]));
-	write(2, ": command not found\n", 20);
+	ft_printf_err(cmd[0].arg[0], ": command not found\n");
 	exit(EXIT_FAILURE);
 }
 
