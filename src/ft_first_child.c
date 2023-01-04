@@ -6,7 +6,7 @@
 /*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 13:25:22 by hsliu             #+#    #+#             */
-/*   Updated: 2023/01/04 14:34:20 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/01/04 14:44:23 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,12 @@ static int	ft_open_infile(char *infile)
 
 	if (access(infile, F_OK) != 0)
 	{
-		ft_printf("zsh: permission denied: %s\n", infile);
+		ft_printf("zsh: no such file or directory: %s\n", infile);
 		return (-1);
 	}
 	if (access(infile, R_OK) != 0)
 	{
-		ft_printf("zsh: no such file or directory: %s\n", infile);
+		ft_printf("zsh: permission denied: %s\n", infile);
 		return (-1);
 	}
 	fd = open(infile, O_RDONLY);
