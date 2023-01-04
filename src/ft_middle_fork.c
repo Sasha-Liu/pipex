@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_fork.c                                          :+:      :+:    :+:   */
+/*   ft_middle_fork.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 15:35:35 by hsliu             #+#    #+#             */
-/*   Updated: 2023/01/02 15:55:33 by hsliu            ###   ########lyon.fr   */
+/*   Updated: 2023/01/04 12:13:28 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,5 @@ static void	ft_middle_child(t_cmd *cmd, int i)
 		exit(EXIT_FAILURE);
 	}
 	execve(cmd[i].pathname, cmd[i].arg, NULL);
-	perror("execve");
 	exit(EXIT_FAILURE);
 }

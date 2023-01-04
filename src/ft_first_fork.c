@@ -6,7 +6,7 @@
 /*   By: hsliu <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 10:58:09 by hsliu             #+#    #+#             */
-/*   Updated: 2023/01/02 15:51:10 by hsliu            ###   ########lyon.fr   */
+/*   Updated: 2023/01/04 12:14:50 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ static void	ft_first_child(char *infile, t_cmd cmd)
 		exit(EXIT_FAILURE);
 	}
 	execve(cmd.pathname, cmd.arg, NULL);
-	perror("execve");
 	exit(EXIT_FAILURE);
 }
 
@@ -67,7 +66,7 @@ static int	ft_open_infile(char *infile)
 {
 	int	fd;
 
-	if (access(infile, X_OK) != 0)
+	if (access(infile, F_OK) != 0)
 	{
 		ft_printf("zsh: permission denied: %s\n", infile);
 		return (-1);

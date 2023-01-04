@@ -6,7 +6,7 @@
 /*   By: hsliu <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 10:58:28 by hsliu             #+#    #+#             */
-/*   Updated: 2023/01/02 15:57:21 by hsliu            ###   ########lyon.fr   */
+/*   Updated: 2023/01/04 12:13:16 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,5 @@ static void	ft_last_child(char *outfile, t_cmd cmd)
 		exit(EXIT_FAILURE);
 	}
 	execve(cmd.pathname, cmd.arg, NULL);
-	perror("execve");
 	exit(EXIT_FAILURE);
 }
