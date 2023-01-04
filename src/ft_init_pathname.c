@@ -6,7 +6,7 @@
 /*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 14:33:42 by hsliu             #+#    #+#             */
-/*   Updated: 2023/01/04 12:08:55 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/01/04 14:38:37 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,6 @@ static char	*ft_access(char **path, char *name)
 	pathname = ft_strjoin("", name);
 	if (pathname == NULL)
 		return (NULL);
-	ft_printf("%s: command not found\n", name);
 	return (pathname);
 }
 

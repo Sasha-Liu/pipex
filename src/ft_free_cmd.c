@@ -6,11 +6,17 @@
 /*   By: hsliu <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 13:33:59 by hsliu             #+#    #+#             */
-/*   Updated: 2022/12/27 14:34:29 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/01/04 13:06:29 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex.h"
+
+void	ft_free_file(t_cmd *cmd, int n)
+{
+	free(cmd[0].file);
+	free(cmd[n - 1].file);
+}
 
 void	ft_free_arg(t_cmd *cmd, int n)
 {
@@ -47,6 +53,7 @@ void	ft_free_pathname(t_cmd *cmd, int n)
 
 void	ft_free_cmd(t_cmd *cmd, int n)
 {
+	ft_free_file(cmd, n);
 	ft_free_pathname(cmd, n);
 	ft_free_arg(cmd, n);
 	free(cmd);

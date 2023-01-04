@@ -6,7 +6,7 @@
 #    By: hsliu <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/26 11:49:10 by hsliu             #+#    #+#              #
-#    Updated: 2023/01/02 11:33:07 by hsliu            ###   ########lyon.fr    #
+#    Updated: 2023/01/04 13:39:23 by hsliu            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,9 +20,10 @@ OBJ_DIR	=	./.obj/
 
 INC_DIR	=	./include/
 
-LIST_SRC	=	pipex.c ft_init_cmd.c  ft_init_arg.c \
-				ft_init_pathname.c ft_init_pipe.c ft_free_cmd.c \
-				ft_first_fork.c ft_middle_fork.c ft_last_fork.c
+LIST_SRC	=	pipex.c \
+				ft_init_cmd.c ft_init_arg.c ft_init_pathname.c ft_init_pipe.c \
+				ft_free_cmd.c \
+				ft_fork.c ft_first_child.c ft_middle_child.c ft_last_child.c
 
 LIST_OBJ	=	$(LIST_SRC:.c=.o) 
 

@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.c                                            :+:      :+:    :+:   */
+/*   ft_middle_child.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/27 12:17:08 by hsliu             #+#    #+#             */
-/*   Updated: 2023/01/04 14:38:48 by hsliu            ###   ########.fr       */
+/*   Created: 2023/01/04 13:29:11 by hsliu             #+#    #+#             */
+/*   Updated: 2023/01/04 14:36:06 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex.h"
 
-int	main(int argc, char **argv, char **envp)
+void	ft_middle_child(t_cmd *cmd, int i)
 {
-	t_cmd	*cmd;
-
-	if (argc < 5)
+	if (dup2(cmd[i].read, 0) == -1)
 	{
-		ft_printf("Usage: ./pipex infile cmd1 cmd2 outfile\n");
-		return (0);
+		perror("in middle child : dup2");
+		exit(EXIT_FAILURE);
 	}
-	cmd = ft_init_cmd(argc, argv, envp);
-	ft_fork(cmd, argc - 3);
-	ft_free_cmd(cmd, argc - 3);
+	if (dup2(cmd[i].write, 1) == -1)
+	{
+		perror("in middle child : dup2");
+		exit(EXIT_FAILURE);
+	}
+	execve(cmd[i].pathname, cmd[i].arg, NULL);
+	write(2, cmd[i].arg[0], ft_strlen(cmd[i].arg[0]));
+	write(2, ": command not found\n", 20);
+	exit(EXIT_FAILURE);
 }

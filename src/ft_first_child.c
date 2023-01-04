@@ -1,64 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_first_fork.c                                    :+:      :+:    :+:   */
+/*   ft_first_child.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsliu <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/02 10:58:09 by hsliu             #+#    #+#             */
-/*   Updated: 2023/01/04 12:14:50 by hsliu            ###   ########.fr       */
+/*   Created: 2023/01/04 13:25:22 by hsliu             #+#    #+#             */
+/*   Updated: 2023/01/04 14:34:20 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex.h"
 
 static int	ft_open_infile(char *infile);
-static void	ft_first_child(char *infile, t_cmd cmd);
 
-void	ft_first_fork(t_cmd cmd, char *infile)
+void	ft_first_child(t_cmd *cmd)
 {
-	pid_t	pid;
-	int		wstatus;
+	int		fd;
+	char	*infile;
 
-	pid = fork();
-	if (pid == -1)
-	{
-		close(cmd.write);
-		perror("fork");
-		return ;
-	}
-	if (pid == 0)
-	{
-		ft_first_child(infile, cmd);
-	}
-	else
-	{
-		close(cmd.write);
-		wait(&wstatus);
-	}
-}
-
-static void	ft_first_child(char *infile, t_cmd cmd)
-{
-	int	fd;
-
+	infile = cmd[0].file;
 	fd = ft_open_infile(infile);
 	if (fd == -1)
 	{
-		close(cmd.write);
+		close(cmd[0].write);
 		exit(EXIT_FAILURE);
 	}
 	if (dup2(fd, 0) == -1)
 	{
-		perror("dup2");
+		perror("in first child : dup2");
 		exit(EXIT_FAILURE);
 	}
-	if (dup2(cmd.write, 1) == -1)
+	if (dup2(cmd[0].write, 1) == -1)
 	{
-		perror("dup2");
+		perror("in first child : dup2");
 		exit(EXIT_FAILURE);
 	}
-	execve(cmd.pathname, cmd.arg, NULL);
+	execve(cmd[0].pathname, cmd[0].arg, NULL);
+	write(2, cmd[0].arg[0], ft_strlen(cmd[0].arg[0]));
+	write(2, ": command not found\n", 20);
 	exit(EXIT_FAILURE);
 }
 
