@@ -6,7 +6,7 @@
 /*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 14:38:27 by hsliu             #+#    #+#             */
-/*   Updated: 2023/01/04 15:30:31 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/01/05 15:45:11 by hsliu            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	ft_free_cmd(t_cmd *cmd, int n);
 void	ft_free_file(t_cmd *cmd, int n);
 
 /****** forks and manage child processes ******/
-void	ft_fork(t_cmd * cmd, int n);
+void	ft_fork(t_cmd *cmd, int n);
 void	ft_parent(t_cmd *cmd, int n, int i);
 void	ft_child(t_cmd *cmd, int n, int i);
 void	ft_first_child(t_cmd *cmd);
