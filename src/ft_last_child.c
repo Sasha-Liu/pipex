@@ -6,7 +6,7 @@
 /*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 13:26:26 by hsliu             #+#    #+#             */
-/*   Updated: 2023/01/04 15:33:39 by hsliu            ###   ########.fr       */
+/*   Updated: 2023/01/05 15:41:37 by hsliu            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,6 @@ void	ft_last_child(t_cmd *cmd, int n)
 		exit(EXIT_FAILURE);
 	}
 	execve(cmd[n - 1].pathname, cmd[n - 1].arg, NULL);
-	ft_printf_err(cmd[n - 1].arg[0], ": command not found\n");
+	ft_printf_err("zsh: command not found: ", cmd[n - 1].arg[0]);
 	exit(EXIT_FAILURE);
 }
