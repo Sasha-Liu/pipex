@@ -6,7 +6,7 @@
 /*   By: hsliu <hsliu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 13:29:11 by hsliu             #+#    #+#             */
-/*   Updated: 2023/01/05 15:41:10 by hsliu            ###   ########lyon.fr   */
+/*   Updated: 2023/01/09 11:52:59 by hsliu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,9 @@ void	ft_middle_child(t_cmd *cmd, int i)
 		exit(EXIT_FAILURE);
 	}
 	execve(cmd[i].pathname, cmd[i].arg, NULL);
-	ft_printf_err("zsh: command not found: ", cmd[i].arg[0]);
+	if (ft_strncmp(cmd[0].arg[0], "", 1) == 0)
+		write(2, "zsh: permission denied:\n", 25);
+	else
+		ft_printf_err("zsh: command not found:", cmd[0].arg[0]);
 	exit(EXIT_FAILURE);
 }
