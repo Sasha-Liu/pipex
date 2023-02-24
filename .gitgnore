@@ -1,0 +1,11 @@
+#ignonre all .a file
+*.a
+
+#ignore all .obj folder and its content
+.obj/
+
+#ignore all .o
+*.o
+
+#ignore the executable pipex
+/pipex
